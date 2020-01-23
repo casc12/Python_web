@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,7 +140,8 @@ BOOTSTRAP3 ={
 	}
 
 # Configurações para o Heroku
-if os.getcwd() == '/app' or cwd[:4] == '/tmp':
+cwd = os.getcwd()
+if cwd == '/app' or cwd[:4] == '/tmp':
 	import dj_database_url
 	DATABASES = {
 		'default': dj_database_url.config(default='postgres://localhost')
